@@ -15,8 +15,7 @@ A simple calculator web application built with vanilla JavaScript, HTML, and CSS
 02calculator/
 ├── index.html
 ├── package.json
-├── public/
-│   └── vite.svg
+├── public
 └── src/
     ├── main.js
     └── style.css
