@@ -1,0 +1,88 @@
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.calculator {
+  width: 400px;
+  height: 500px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calculator__output {
+  background: #eee;
+  padding: 20px;
+  font-size: 2rem;
+  text-align: right;
+  height: 60px;
+
+  overflow: hidden;           /* hide overflowed content */
+  text-overflow: ellipsis;    /* show ... when overflow happens */
+  white-space: nowrap;        /* keep text on a single line */
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.calculator__keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  margin-top: 10px;
+}
+
+.calculator__key {
+  padding: 20px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.calculator__key:hover {
+  background-color: #ddd;
+}
+
+.calculator__key--operator {
+  background-color: #ffd966;
+}
+
+.calculator__key--enter {
+  padding: 5px;
+  background-color: #a4c2f4;
+  grid-column: span 4;
+}
+
+.operator{
+  padding: 20px;
+  font-size: 2rem;
+  margin: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#DEL {
+  padding: 1px;
+  font-size: 1.5rem;
+  margin: 10px;
+}
