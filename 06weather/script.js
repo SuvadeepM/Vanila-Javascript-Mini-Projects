@@ -1,24 +1,38 @@
 const API_KEY = "4a9834faae9941ad9f5235645252406";
 
 const getData = async (city) => {
-  let URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`;
-  let location = document.getElementById("location");
-  let temp = document.getElementById("temperature");
-  let desc = document.getElementById("description");
+  if (!city) return;
+  const URL = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`;
+  const location = document.getElementById("location");
+  const temp = document.getElementById("temperature");
+  const desc = document.getElementById("description");
 
-  const result = await fetch(URL);
-  const data = await result.json();
+  try {
+    location.innerHTML = "Loading...";
+    temp.innerHTML = "";
+    desc.innerHTML = "";
 
-  let temparature = data.current.temp_c;
-  let condition = data.current.condition.text;
+    const result = await fetch(URL);
+    if (!result.ok) throw new Error("City not found");
+    const data = await result.json();
 
-  location.innerHTML = city;
-  temp.innerHTML = `${temparature} degree Celsius`;
-  desc.innerHTML = condition;
+    const temperature = data.current.temp_c;
+    const condition = data.current.condition.text;
+
+    location.innerHTML = city;
+    temp.innerHTML = `${temperature}° Celsius`;
+    desc.innerHTML = condition;
+  } catch (error) {
+    location.innerHTML = "Error";
+    temp.innerHTML = "";
+    desc.innerHTML = error.message;
+  }
 };
 
 document.getElementById("searchButton").addEventListener("click", () => {
-  let targetCity = document.getElementById("locationInput");
-  getData(targetCity.value);
-  targetCity.value = "";
+  const targetCity = document.getElementById("locationInput");
+  if (targetCity.value.trim() !== "") {
+    getData(targetCity.value.trim());
+    targetCity.value = "";
+  }
 });
